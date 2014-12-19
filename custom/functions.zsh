@@ -14,10 +14,6 @@ killgrep() {
     for x in `ps ax | grep $1 | awk '{print $1}'`; do kill -9 $x; done
 }
 
-function git() {
-    hub $@
-}
-
 function test_and_push() {
     bundle exec rake && git push -u origin `git rev-parse --abbrev-ref HEAD`
 }
