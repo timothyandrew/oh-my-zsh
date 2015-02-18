@@ -31,24 +31,12 @@ function setup_seedbox() {
 }
 
 function emacs() {
-    open -a /Applications/Emacs.app -n $1
+    (nohup /usr/bin/emacs $1 &)
 }
 
-function latest_promo_bank() {
-    ssh staples@ftp.runa.com "cat \`ls -rt /ftp_home/staples/email/promo-bank*csv | tail -n1\` | head -n ${1:-10}"
-}
-
-function emacs_plus_icon() {
-    cp /Applications/Emacs.app/Contents/Resources/Emacs.icns{,.bak}
-    cp "$2" /Applications/Emacs.app/Contents/Resources/Emacs.icns
-    open -a /Applications/Emacs.app -n $1
-    #cp /Applications/Emacs.app/Contents/Resources/Emacs.icns{.bak,}
-}
-
-function backup_photos() {
-    unset PYTHONPATH
-    echo "Making new backup."
-    attic create /Volumes/Misc/Backups/Photo\ Library.attic::`date +%Y-%m-%d-%H:%M` ~/Pictures/Photo\ Library
-    echo "Pruning older backups."
-    attic prune /Volumes/Misc/Backups/Photo\ Library.attic --keep-weekly 2 --keep-monthly 4 --keep-yearly 10
+function airtel_balance() {
+    OUTPUT=`curl -sL http://122.160.230.125:8080/planupdate/ | grep -i "Available balance\|High speed data limit" -A1 | sed '2p;5p;d' | sed -e 's/<span>//' -e 's/<\/span>//' -e 's/<\/div>//' | sed -e 's/^ *//' -e 's/ *$//'`
+    REMAIN=`echo $OUTPUT | sed '1p;d' | tr -d '\r'`
+    LIMIT=`echo $OUTPUT | sed '2p;d' | tr -d '\r'`
+    echo "${REMAIN} / ${LIMIT}"
 }

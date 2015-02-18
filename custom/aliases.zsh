@@ -9,3 +9,7 @@ alias push="git pull --rebase && bundle && ((rake parallel || rake) || afplay /S
 alias emacsd="/usr/local/bin/emacs --daemon"
 alias ast="gst --porcelain | grep -v '^\sT'" # Git annex status
 alias t="trash"
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+alias git-word-diff='git diff --word-diff --word-diff-regex=:'
+alias open='xdg-open'

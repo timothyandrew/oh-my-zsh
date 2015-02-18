@@ -1,0 +1,4 @@
+
+(process:21356): Gtk-WARNING **: Locale not supported by C library.
+	Using the fallback 'C' locale.
+Fontconfig warning: ignoring utf-8: not a valid region tag
