@@ -31,7 +31,7 @@ function setup_seedbox() {
 }
 
 function emacs() {
-    (nohup /usr/bin/emacs $1 &)
+  /Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9 "$@"
 }
 
 function airtel_balance() {
